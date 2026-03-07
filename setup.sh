@@ -41,24 +41,6 @@ echo "=== Setting up Python (pyenv) ==="
 pyenv install -s 3.13
 pyenv global 3.13
 
-echo "=== Configuring SSH ==="
-mkdir -p "$HOME/.ssh"
-if [ ! -f "$HOME/.ssh/config" ]; then
-  cat > "$HOME/.ssh/config" << 'EOF'
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519
-EOF
-  chmod 600 "$HOME/.ssh/config"
-fi
-
-if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
-  echo "Generating SSH key..."
-  git_email=$(git config --global user.email)
-  ssh-keygen -t ed25519 -C "${git_email:-you@example.com}"
-fi
-
 echo "=== Configuring git ==="
 git config --global init.defaultBranch main
 git config --global core.editor nvim
@@ -69,6 +51,18 @@ fi
 if [ -z "$(git config --global user.email)" ]; then
   read -p "Git email: " git_email
   git config --global user.email "$git_email"
+fi
+
+echo "=== Configuring SSH (Keychain persistence) ==="
+mkdir -p "$HOME/.ssh"
+if [ ! -f "$HOME/.ssh/config" ]; then
+  cat > "$HOME/.ssh/config" << 'EOF'
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+  chmod 600 "$HOME/.ssh/config"
 fi
 
 chmod +x "$DOTFILES_DIR/test.sh"
@@ -82,12 +76,14 @@ echo "Next steps:"
 echo ""
 echo "  1. Close Terminal and open Wezterm"
 echo ""
-echo "  2. Authenticate GitHub (run in Wezterm):"
+echo "  2. Authenticate GitHub + generate SSH key:"
 echo "     gh auth login"
-echo "       > Account:  GitHub.com"
-echo "       > Protocol: SSH"
-echo "       > SSH key:  ~/.ssh/id_ed25519.pub"
-echo "       > Browser:  Yes"
+echo "       > Account:      GitHub.com"
+echo "       > Protocol:     SSH"
+echo "       > Generate key: Yes"
+echo "       > Passphrase:   (enter one)"
+echo "       > Title:        (name your device)"
+echo "       > Browser:      Yes"
 echo ""
 echo "  3. Set up Raycast:"
 echo "     - Open Raycast > Set hotkey to Cmd+Space"

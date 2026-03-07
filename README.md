@@ -16,8 +16,8 @@ cd ~/dotfiles && chmod +x setup.sh && ./setup.sh
 
 # 4. Restart terminal. Open Wezterm.
 
-# 5. Authenticate GitHub + add SSH key
-gh auth login    # choose SSH when prompted, it uploads the key for you
+# 5. Authenticate GitHub + generate SSH key
+gh auth login    # choose SSH > generate key > set passphrase > name device
 
 # 6. Set up Raycast
 # Open Raycast > Set hotkey to Cmd+Space
@@ -63,4 +63,4 @@ alias myalias="/path/to/script.sh"
 
 ## SSH
 
-setup.sh creates `~/.ssh/config` with agent persistence so you only need to enter your key passphrase once per reboot (stored in macOS Keychain).
+`gh auth login` generates the SSH key and uploads it to GitHub. setup.sh creates `~/.ssh/config` with macOS Keychain persistence so you only enter the passphrase once per reboot.
