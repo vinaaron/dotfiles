@@ -31,6 +31,7 @@ gh auth login
 | CLI | eza, zoxide, fzf, yazi, ripgrep, lazygit, jq |
 | Languages | pyenv (Python), fnm (Node), uv |
 | Dev | awscli, libpq (psql), gh, OrbStack |
+| Apps | Raycast (Spotlight replacement) |
 
 ## Machine-Specific Overrides
 

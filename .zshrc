@@ -17,10 +17,10 @@ export PATH=/opt/homebrew/bin:$PATH
 eval "$(fnm env --use-on-cd)"
 
 # Auto suggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlighting
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Pyenv python setup
 eval "$(pyenv init --path)"
@@ -43,8 +43,7 @@ bindkey "^[[B" history-search-forward
 alias ls="eza --icons=always"
 
 # ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
+eval "$(zoxide init zsh --cmd cd)"
 
 # ---- Tailscale CLI (App Store version) ----
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"

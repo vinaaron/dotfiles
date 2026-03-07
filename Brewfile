@@ -26,6 +26,10 @@ brew "pyenv-virtualenv"
 brew "fnm"
 brew "uv"
 
+# Apps
+cask "raycast"
+cask "orbstack"
+
 # Development
 brew "awscli"
 brew "libpq"
@@ -33,4 +37,3 @@ brew "gh"
 brew "ripgrep"
 brew "lazygit"
 brew "jq"
-cask "orbstack"
