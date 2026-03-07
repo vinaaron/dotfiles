@@ -3,6 +3,9 @@
 echo "=== Dotfiles Health Check ==="
 echo ""
 
+# Initialize fnm so node/npm/yarn are in PATH
+eval "$(fnm env)" 2>/dev/null
+
 pass=0
 fail=0
 
@@ -16,15 +19,15 @@ check() {
   fi
 }
 
-echo "Core (dotfiles .zshrc):"
+echo "Core (setup.sh + Brewfile):"
 check "node (fnm)"        "node --version"
 check "npm"               "npm --version"
 check "yarn"              "yarn --version"
 check "python (pyenv)"    "pyenv version"
 check "uv"                "uv --version"
 check "neovim"            "nvim --version"
-check "eza (ls alias)"    "type ls | grep -q eza"
-check "zoxide (cd)"       "type cd | grep -q function"
+check "eza (ls alias)"    "command -v eza && grep -q 'alias ls.*eza' ~/.zshrc"
+check "zoxide (cd)"       "command -v zoxide && grep -q 'zoxide init' ~/.zshrc"
 check "fzf"               "fzf --version"
 check "ripgrep"           "rg --version"
 check "lazygit"           "lazygit --version"
@@ -34,13 +37,6 @@ check "aws cli"           "aws --version"
 check "gh cli"            "gh --version"
 check "git"               "git --version"
 check "EDITOR=nvim"       "[ \"$EDITOR\" = 'nvim' ]"
-
-echo ""
-echo "Personal (.zshrc.local):"
-check "notify function"   "type notify | grep -q function"
-check "phone-log alias"   "type phone-log | grep -q alias"
-check "bun"               "bun --version"
-check "JAVA_HOME set"     "[ -n \"$JAVA_HOME\" ]"
 
 echo ""
 echo "SSH:"

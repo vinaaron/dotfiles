@@ -27,13 +27,21 @@ brew "fnm"
 brew "uv"
 
 # Apps
-cask "raycast"
+cask "1password"
 cask "orbstack"
+cask "raycast"
+cask "slack"
+cask "tailscale"
 
 # Development
 brew "awscli"
+brew "azure-cli"
 brew "libpq"
 brew "gh"
 brew "ripgrep"
 brew "lazygit"
 brew "jq"
+
+# Supabase
+tap "supabase/tap"
+brew "supabase/tap/supabase"

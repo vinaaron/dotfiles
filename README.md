@@ -16,21 +16,15 @@ cd ~/dotfiles && chmod +x setup.sh && ./setup.sh
 
 # 4. Restart terminal. Open Wezterm.
 
-# 5. Authenticate GitHub
-gh auth login
+# 5. Authenticate GitHub + add SSH key
+gh auth login    # choose SSH when prompted, it uploads the key for you
 
-# 6. Generate SSH key
-ssh-keygen -t ed25519 -C "your-email@example.com"
-cat ~/.ssh/id_ed25519.pub
-# Add to GitHub: Settings > SSH and GPG keys > New SSH key
-
-# 7. Set git identity
-git config --global user.name "Your Name"
-git config --global user.email "your-email@example.com"
-
-# 8. Set up Raycast
+# 6. Set up Raycast
 # Open Raycast > Set hotkey to Cmd+Space
 # System Settings > Keyboard > Keyboard Shortcuts > Spotlight > uncheck both
+
+# 7. Verify everything works
+~/dotfiles/test.sh
 ```
 
 ## What's Included
@@ -43,8 +37,8 @@ git config --global user.email "your-email@example.com"
 | Multiplexer | tmux ([ce20480/Tmux](https://github.com/ce20480/Tmux)) |
 | CLI | eza, zoxide, fzf, yazi, ripgrep, lazygit, jq |
 | Languages | pyenv (Python), fnm (Node), uv |
-| Dev | awscli, libpq (psql), gh, OrbStack |
-| Apps | Raycast (Spotlight replacement) |
+| Dev | awscli, azure-cli, supabase, libpq (psql), gh, OrbStack |
+| Apps | 1Password, Raycast, Slack, Tailscale |
 
 ## What setup.sh Does
 

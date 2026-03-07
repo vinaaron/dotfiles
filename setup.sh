@@ -41,7 +41,7 @@ echo "=== Setting up Python (pyenv) ==="
 pyenv install -s 3.13
 pyenv global 3.13
 
-echo "=== Configuring SSH (agent persistence) ==="
+echo "=== Configuring SSH ==="
 mkdir -p "$HOME/.ssh"
 if [ ! -f "$HOME/.ssh/config" ]; then
   cat > "$HOME/.ssh/config" << 'EOF'
@@ -53,14 +53,30 @@ EOF
   chmod 600 "$HOME/.ssh/config"
 fi
 
-echo "=== Configuring git defaults ==="
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+  echo "Generating SSH key..."
+  git_email=$(git config --global user.email)
+  ssh-keygen -t ed25519 -C "${git_email:-you@example.com}"
+fi
+
+echo "=== Configuring git ==="
 git config --global init.defaultBranch main
 git config --global core.editor nvim
+if [ -z "$(git config --global user.name)" ]; then
+  read -p "Git name: " git_name
+  git config --global user.name "$git_name"
+fi
+if [ -z "$(git config --global user.email)" ]; then
+  read -p "Git email: " git_email
+  git config --global user.email "$git_email"
+fi
 
 echo "=== Setting up Raycast ==="
 echo "Open Raycast, then:"
 echo "  - Set hotkey to Cmd+Space"
 echo "  - Disable Spotlight: System Settings > Keyboard > Keyboard Shortcuts > Spotlight > uncheck both"
+
+chmod +x "$DOTFILES_DIR/test.sh"
 
 echo ""
 echo "========================================="
@@ -69,11 +85,5 @@ echo "========================================="
 echo ""
 echo "Next steps:"
 echo "  1. Open Wezterm"
-echo "  2. Run: gh auth login"
-echo "  3. Generate SSH key:"
-echo "     ssh-keygen -t ed25519 -C \"your-email@example.com\""
-echo "     cat ~/.ssh/id_ed25519.pub"
-echo "     Add to GitHub: Settings > SSH and GPG keys"
-echo "  4. Set git identity:"
-echo "     git config --global user.name \"Your Name\""
-echo "     git config --global user.email \"your-email@example.com\""
+echo "  2. Run: gh auth login (choose SSH — it uploads the key for you)"
+echo "  3. Verify: ~/dotfiles/test.sh"
