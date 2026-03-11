@@ -13,6 +13,10 @@ fi
 # home brew
 export PATH=/opt/homebrew/bin:$PATH
 
+# Zsh completion system (enables Tab completion for paths, commands, git, etc.)
+autoload -Uz compinit && compinit
+setopt NO_BEEP
+
 # Node version manager (fnm — fast, Rust-based replacement for nvm)
 eval "$(fnm env --use-on-cd)"
 
@@ -41,9 +45,6 @@ bindkey "^[[B" history-search-forward
 
 # ---- Eza (better ls) -----
 alias ls="eza --icons=always"
-
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh --cmd cd)"
 
 # ---- Tailscale CLI (App Store version) ----
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
@@ -77,6 +78,9 @@ source <(fzf --zsh)
 
 # Claude Code
 export PATH="$HOME/.local/bin:$PATH"
+
+# ---- Zoxide (better cd) ---- must be near end so cd hook isn't overridden
+eval "$(zoxide init zsh --cmd cd)"
 
 # Machine-specific overrides (not committed)
 source ~/.zshrc.local 2>/dev/null
