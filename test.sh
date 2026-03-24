@@ -54,5 +54,16 @@ check "vim-tmux-navigator"      "[ -d ~/.config/tmux/plugins/vim-tmux-navigator 
 check "sesh"                    "command -v sesh"
 
 echo ""
+echo "Mobile Development (optional):"
+check "bun"                "bun --version"
+check "watchman"           "watchman --version"
+check "eas-cli"            "command -v eas"
+check "cocoapods"          "pod --version"
+check "java 21"            "java --version 2>&1 | grep -q '21'"
+check "Xcode CLI tools"   "xcode-select -p"
+check "JAVA_HOME set"     '[ -n "$JAVA_HOME" ]'
+check "Android SDK"        '[ -d "$HOME/Library/Android/sdk" ]'
+
+echo ""
 echo "---"
 echo "$pass passed, $fail failed"

@@ -29,6 +29,11 @@ brew "pyenv-virtualenv"
 brew "fnm"
 brew "uv"
 
+# Mobile / JS Development
+tap "oven-sh/bun"
+brew "oven-sh/bun/bun"
+brew "watchman"
+
 # Apps
 cask "1password"
 cask "orbstack"

@@ -38,7 +38,7 @@ fi
 "$HOME/.config/tmux/plugins/tpm/bin/install_plugins"
 
 echo "=== Bootstrapping Neovim plugins ==="
-nvim --headless "+Lazy! sync" +qa
+nvim --headless '+Lazy! sync' +qa
 
 echo "=== Setting up Node (fnm) ==="
 eval "$(fnm env)"
@@ -51,6 +51,24 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 echo "=== Installing npm globals ==="
 npm install -g @googleworkspace/cli
+
+echo ""
+read -p "Set up mobile development tools (Expo/React Native)? [y/N] " mobile_setup
+if [[ "$mobile_setup" =~ ^[Yy] ]]; then
+  echo "=== Installing mobile development tools ==="
+  brew install cocoapods
+  brew install --cask temurin@21
+  brew install --cask android-studio
+  bun add -g eas-cli
+
+  echo ""
+  echo "Mobile — remaining manual steps:"
+  echo "  • Install Xcode from the App Store (required for iOS builds)"
+  echo "    Then: sudo xcodebuild -license accept"
+  echo "  • Open Android Studio → finish setup wizard (downloads SDK)"
+  echo "    SDK Manager → install API 35 + build tools"
+  echo "  • eas login"
+fi
 
 echo "=== Setting up Python (pyenv) ==="
 pyenv install -s 3.13

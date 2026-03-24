@@ -73,11 +73,25 @@ export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 # PostgreSQL client
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
+# Rust cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # ---- fzf (fuzzy finder: Ctrl-R history, Ctrl-T file search) ----
 source <(fzf --zsh)
 
 # Claude Code
 export PATH="$HOME/.local/bin:$PATH"
+
+# Bun global packages (eas-cli, etc.)
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Java (Temurin 21 — required for Android/Gradle builds)
+export JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null)
+
+# Android SDK (available after opening Android Studio once)
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+[ -d "$ANDROID_HOME" ] && export PATH="$ANDROID_HOME/platform-tools:$PATH"
 
 # ---- Zoxide (better cd) ---- must be near end so cd hook isn't overridden
 eval "$(zoxide init zsh --cmd cd)"
