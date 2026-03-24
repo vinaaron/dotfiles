@@ -40,6 +40,7 @@ check "terraform"         "terraform --version"
 check "tree-sitter"       "tree-sitter --version"
 check "stripe cli"        "stripe --version"
 check "supabase cli"      "supabase --version"
+check "rust (cargo)"      "cargo --version"
 check "EDITOR=nvim"       "[ \"$EDITOR\" = 'nvim' ]"
 
 echo ""

@@ -74,6 +74,11 @@ echo "=== Setting up Python (pyenv) ==="
 pyenv install -s 3.13
 pyenv global 3.13
 
+echo "=== Installing Rust (rustup) ==="
+if ! command -v rustup &>/dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+fi
+
 echo "=== Configuring git ==="
 git config --global init.defaultBranch main
 git config --global core.editor nvim
