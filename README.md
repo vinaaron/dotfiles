@@ -37,7 +37,7 @@ gh auth login    # choose SSH > generate key > set passphrase > name device
 | Multiplexer | tmux ([ce20480/Tmux](https://github.com/ce20480/Tmux)) |
 | CLI | eza, zoxide, fzf, yazi, ripgrep, lazygit, jq |
 | Languages | pyenv (Python), fnm (Node), uv |
-| Dev | awscli, azure-cli, supabase, libpq (psql), gh, OrbStack |
+| Dev | awscli, azure-cli, supabase, libpq (psql), gh, ngrok, cloudflared, OrbStack |
 | Apps | 1Password, Raycast, Slack, Tailscale, Zen Browser |
 
 ## What setup.sh Does

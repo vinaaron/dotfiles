@@ -52,6 +52,10 @@ brew "jq"
 brew "terraform"
 cask "gcloud-cli"
 
+# Dev tunneling
+cask "ngrok"
+brew "cloudflared"
+
 # Stripe
 tap "stripe/stripe-cli"
 brew "stripe/stripe-cli/stripe"
