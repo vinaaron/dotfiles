@@ -55,6 +55,7 @@ cask "gcloud-cli"
 # Dev tunneling
 cask "ngrok"
 brew "cloudflared"
+cask "cloudflare-warp"  # needed when port 7844 is fully blocked (libraries, schools); auto-used by ~/.claude/skills/dev-tunnel
 
 # Stripe
 tap "stripe/stripe-cli"
